@@ -17,9 +17,20 @@ let clases = [
   },
 ]
 
-//GET: obtener
-//POST:enviar
-// UPDATE DELETE
+let usuarios=[
+  {
+      idUsuario:1,
+      nombre:"profesor",
+      apellido:"prueba"    },
+  {
+      idUsuario:2,
+      nombre:"alumno",
+      apellido:"prueba"
+  },{
+      idUsuario:3,
+      nombre:"Pablo",
+      apellido:"Perez"
+  }]
 
 app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
@@ -37,7 +48,7 @@ app.get('/api/clases/:id', (request, response) => {
 
 app.post('/api/clases',(request,response)=>{
   const body = request.body
-  
+  console.log(body);
   const newClase = {
     id:body.id,
     nombre:body.nombre
@@ -46,6 +57,32 @@ app.post('/api/clases',(request,response)=>{
   clases=clases.concat(newClase)
 
   response.json(newClase)
+})
+
+// Metodos usuarios
+
+app.get('/api/users', (request, response) => {
+  response.json(usuarios)
+})
+
+app.get('/api/users/:id', (request, response) => {
+  const id = Number(request.params.id)
+  const user = usuarios.find(user=>user.idUsuario==id)
+  response.json(user)
+})
+
+app.post('/api/users',(request,response)=>{
+  const body = request.body
+  
+  const newUser = {
+    idUsuario:body.idUsuario,
+    nombre:body.nombre,
+    apellido:body.apellido
+  }
+
+  usuarios=usuarios.concat(newUser)
+
+  response.json(newUser)
 })
 
 const PORT = 3001
