@@ -1,5 +1,8 @@
 const express = require('express')
 const app = express()
+
+require('./mongo')
+
 app.use(express.json())
 
 let clases = [
