@@ -4,3 +4,4 @@ const connectionString = `mongodb+srv://matias:matigonza@cluster0.wrjdamk.mongod
 mongoose.connect(connectionString)
 .then(()=>console.log('database connected'))
 .catch(err=>console.log(err))
+

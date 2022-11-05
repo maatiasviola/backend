@@ -1,91 +1,61 @@
 const express = require('express')
 const app = express()
+const Clase = require("./models/Clase")
+const Usuario = require('./models/Usuario')
 
 require('./mongo')
 
 app.use(express.json())
-
-let clases = [
-  {
-    id:1,
-    nombre:"Clase Guitarra"
-  },
-  {
-    id:2,
-    nombre:"Clase Chef"
-  },
-  {
-    id:3,
-    nombre:"Clase Tenis"
-  },
-]
-
-let usuarios=[
-  {
-      idUsuario:1,
-      nombre:"profesor",
-      apellido:"prueba"    },
-  {
-      idUsuario:2,
-      nombre:"alumno",
-      apellido:"prueba"
-  },{
-      idUsuario:3,
-      nombre:"Pablo",
-      apellido:"Perez"
-  }]
 
 app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
 })
 
 app.get('/api/clases', (request, response) => {
-  response.json(clases)
+  const clases = Clase.find({}).then(clases=>response.json(clases))
 })
 
 app.get('/api/clases/:id', (request, response) => {
-  const id = Number(request.params.id)
-  const clase = clases.find(clase=>clase.id=id)
-  response.json(clase)
+  const id = request.params.id //Accede a los valores dinamicos de la ruta
+  Clase.findById({id}).then(clase => response.json(clase))
 })
 
 app.post('/api/clases',(request,response)=>{
   const body = request.body
-  console.log(body);
-  const newClase = {
-    id:body.id,
-    nombre:body.nombre
-  }
-
-  clases=clases.concat(newClase)
-
-  response.json(newClase)
+  const clase = new Clase({
+    nombre: body.nombre
+  })
+  clase.save()
+  .then(result => {
+    console.log('clase saved!')
+    mongoose.connection.close()
+  })
+  response.json()
 })
 
 // Metodos usuarios
 
 app.get('/api/users', (request, response) => {
-  response.json(usuarios)
+  const usuarios = Usuario.find({}).then(usuarios=>response.json(usuarios))
 })
 
 app.get('/api/users/:id', (request, response) => {
-  const id = Number(request.params.id)
-  const user = usuarios.find(user=>user.idUsuario==id)
-  response.json(user)
+  const id = request.params.id //Accede a los valores dinamicos de la ruta
+  Usuario.findById({id}).then(usuario => response.json(usuario))
 })
 
 app.post('/api/users',(request,response)=>{
   const body = request.body
-  
-  const newUser = {
-    idUsuario:body.idUsuario,
-    nombre:body.nombre,
-    apellido:body.apellido
-  }
-
-  usuarios=usuarios.concat(newUser)
-
-  response.json(newUser)
+  const usuario = new Usuario({
+    nombre: body.nombre,
+    apellido: body.apellido
+  })
+  usuario.save()
+  .then(result => {
+    console.log('usuario saved!')
+    mongoose.connection.close()
+  })
+  response.json()
 })
 
 const PORT = 3001
