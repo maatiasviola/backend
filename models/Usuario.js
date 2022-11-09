@@ -2,7 +2,11 @@ const {Schema, model} = require("mongoose")
 
 const usuarioSchema = new Schema({
     nombre: String,
-    apellido: String
+    apellido: String,
+    clase:{
+      type:Schema.Types.ObjectId,
+      ref:'Clase'
+    }
 })
 
 usuarioSchema.set('toJSON', {
@@ -15,15 +19,4 @@ usuarioSchema.set('toJSON', {
 
 const Usuario = model("Usuario", usuarioSchema)
 
-/*const usuario = new Usuario({
-    nombre: "Matias",
-    apellido: "Viola"
-})
-
-usuario.save()
-.then(result => {
-    console.log('usuario saved!')
-    mongoose.connection.close()
-  })*/
-
-  module.exports = Usuario
+module.exports = Usuario

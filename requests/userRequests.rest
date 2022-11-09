@@ -2,13 +2,14 @@ GET http://localhost:3001/api/users
 
 ##################
 
-GET http://localhost:3001/api/users/2
+GET http://localhost:3001/api/users/6365a488d3655fa2e5c90773
 
 ###############################
 POST http://localhost:3001/api/users
 Content-Type: application/json 
 
-  {
-      "idUsuario":55,
-      "nombre":"Mati",
-      "apellido":"Dudev"    }
+{
+  "nombre":"Tincho",
+  "apellido":"agarra la pala",
+  "clase":"6365a2b2a84e9259f2af82f9"  
+}

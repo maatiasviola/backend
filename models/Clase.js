@@ -1,7 +1,11 @@
 const {Schema, model} = require("mongoose")
 
 const claseSchema = new Schema({
-    nombre: String
+    nombre: String,
+    user:{
+      type:Schema.Types.ObjectId,
+      ref:'Usuario'
+    }
 })
 
 claseSchema.set('toJSON', {
@@ -13,15 +17,5 @@ claseSchema.set('toJSON', {
   })
 
 const Clase = model("Clase", claseSchema)
-
-/*const clase = new Clase({
-    nombre: "Clase de danza"
-})
-
-clase.save()
-.then(result => {
-    console.log('clase saved!')
-    mongoose.connection.close()
-  })*/
 
   module.exports = Clase

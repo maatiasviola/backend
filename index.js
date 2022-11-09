@@ -1,11 +1,13 @@
 const express = require('express')
+const usersRouter = require('./controllers/users')
 const app = express()
 const Clase = require("./models/Clase")
-const Usuario = require('./models/Usuario')
 
 require('./mongo')
 
 app.use(express.json())
+
+app.use('/api/users',usersRouter)
 
 app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
@@ -35,28 +37,6 @@ app.post('/api/clases',(request,response)=>{
 
 // Metodos usuarios
 
-app.get('/api/users', (request, response) => {
-  const usuarios = Usuario.find({}).then(usuarios=>response.json(usuarios))
-})
-
-app.get('/api/users/:id', (request, response) => {
-  const id = request.params.id //Accede a los valores dinamicos de la ruta
-  Usuario.findById({id}).then(usuario => response.json(usuario))
-})
-
-app.post('/api/users',(request,response)=>{
-  const body = request.body
-  const usuario = new Usuario({
-    nombre: body.nombre,
-    apellido: body.apellido
-  })
-  usuario.save()
-  .then(result => {
-    console.log('usuario saved!')
-    mongoose.connection.close()
-  })
-  response.json()
-})
 
 const PORT = 3001
 app.listen(PORT, () => {
