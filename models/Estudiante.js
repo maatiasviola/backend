@@ -1,14 +1,13 @@
 const {Schema, model} = require("mongoose")
 
-const claseSchema = new Schema({
-    nombre: String,
+const estudianteSchema = new Schema({
     usuario:{
       type:Schema.Types.ObjectId,
       ref:'Usuario'
     }
 })
 
-claseSchema.set('toJSON', {
+estudianteSchema.set('toJSON', {
     transform: (document, returnedObject) => {
       returnedObject.id = returnedObject._id.toString()
       delete returnedObject._id
@@ -16,6 +15,6 @@ claseSchema.set('toJSON', {
     }
   })
 
-const Clase = model("Clase", claseSchema)
+const Estudiante = model("Estudiante", estudianteSchema)
 
-module.exports = Clase
+module.exports = Estudiante
