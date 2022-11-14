@@ -6,8 +6,11 @@ router.get('/test', function(req, res) {
     res.send('Llegaste a la ruta de users');
   });
 router.post('/registration', UserController.createUser)
+
+/*
 router.get('/', UserController.getUsers)
 router.post('/userByMail', UserController.getUsersByMail)
+*/
 
 /*
 router.post('/login/', UserController.loginUser)

@@ -20,6 +20,7 @@ exports.createUser = async function (req, res, next) {
     }
 }
 
+/*
 exports.getUsers = async function (req, res, next) {
 
     const page = req.query.page ? req.query.page : 1
@@ -29,7 +30,7 @@ exports.getUsers = async function (req, res, next) {
         limit
     }
     try {
-    const Users = await User.paginate({}, options)
+    const Users = await Usuario.paginate({}, options)
     return res.status(200).json({status: 200, data: Users, message: "Succesfully Users Recieved"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
@@ -46,12 +47,13 @@ exports.getUsersByMail = async function (req, res, next) {
     }
     let filtro= {email: req.body.email}
     try {
-    const Users = await User.paginate(filtro, options)
+    const Users = await Usuario.paginate(filtro, options)
     return res.status(200).json({status: 200, data: Users, message: "Succesfully Users Recieved"});
     } catch (e) {
     return res.status(400).json({status: 400, message: e.message});
     }
 }
+*/
 
 /*
 exports.updateUser = async function (req, res, next) {
