@@ -1,15 +1,15 @@
-GET http://localhost:3001/api/users
+GET http://localhost:4000/api/users
 
 ##################
 
-GET http://localhost:3001/api/users/6365a488d3655fa2e5c90773
+GET http://localhost:4000/api/users/6365a488d3655fa2e5c90773
 
 ###############################
-POST http://localhost:3001/api/users
+POST http://localhost:4000/users/registration
 Content-Type: application/json 
 
 {
-  "nombre":"Tincho",
-  "apellido":"agarra la pala",
-  "clase":"6365a2b2a84e9259f2af82f9"  
+  "nombre":"Matias Miguel",
+  "apellido":"Angel",
+  "clase":"6365a2b2a84e9259f2af82fa9"  
 }
