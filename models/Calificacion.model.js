@@ -9,7 +9,7 @@ const calificacionSchema = new Schema({
         type:Schema.Types.ObjectId,
         ref:'Estudiante'
     },
-    valor: Integer,
+    valor: Number,
 })
 
 calificacionSchema.set('toJSON', {

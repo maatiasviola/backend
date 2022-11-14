@@ -5,10 +5,13 @@ const contratacionSchema = new Schema({
       type:Schema.Types.ObjectId,
       ref:'Clase'
     },
-    email: String,
-    nroTelefono: Integer,
+    usuario:{
+      type:Schema.Types.ObjectId,
+      ref:'Usuario'
+    },
     motivo: String,
     estado: String,
+    horarioReferencia: String,
 })
 
 contratacionSchema.set('toJSON', {

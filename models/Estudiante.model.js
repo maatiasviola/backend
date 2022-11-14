@@ -4,7 +4,10 @@ const estudianteSchema = new Schema({
     usuario:{
       type:Schema.Types.ObjectId,
       ref:'Usuario'
-    }
+    },
+    fechaNacimiento: Date,
+    mayorEstudioCursado: String,
+    mayorEstudioFinalizado: String,
 })
 
 estudianteSchema.set('toJSON', {

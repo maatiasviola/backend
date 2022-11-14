@@ -10,6 +10,7 @@ const comentarioSchema = new Schema({
         ref:'Usuario'
     },
     descripcion: String,
+    bloqueado: String,
 })
 
 comentarioSchema.set('toJSON', {

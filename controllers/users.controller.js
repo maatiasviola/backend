@@ -1,5 +1,5 @@
 const usersRouter = require('express').Router()
-const Usuario = require('../models/Usuario')
+const Usuario = require('../models/Usuario.model')
 
 usersRouter.get('/', (request, response) => {
     Usuario.find({}).then(usuarios=>response.json(usuarios))
@@ -21,9 +21,11 @@ usersRouter.post('/',(request,response)=>{
     const body = request.body
     
     const nuevoUsuario = new Usuario({
-      nombre: body.nombre,
-      apellido: body.apellido,
-      clase:body.clase
+        nombre: body.nombre,
+        apellido: body.apellido,
+        avatar: body.avatar,
+        email: body.email,
+        password: body.password,
     })
     
     nuevoUsuario.save()

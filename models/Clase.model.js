@@ -2,10 +2,25 @@ const {Schema, model} = require("mongoose")
 
 const claseSchema = new Schema({
     nombre: String,
-    usuario:{
+    descripcion: String,
+    tipo: String,
+    categoria: String,
+    frecuencia: String,
+    duracion: String,
+    costo: String,
+    imagen: String,
+    calificaciones:[{
       type:Schema.Types.ObjectId,
-      ref:'Usuario'
-    }
+      ref:'Calificacion'
+    }],
+    comentarios:[{
+      type:Schema.Types.ObjectId,
+      ref:'Comentario'
+    }],
+    profesor:{
+      type:Schema.Types.ObjectId,
+      ref:'Profesor'
+    },
 })
 
 claseSchema.set('toJSON', {
